@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Addcatagory from "./pages/AddCatagory/Addcatagory";
 import Listcatagory from "./pages/ListCatagory/Listcatagory";
 import Add from "./pages/Add/Add";
@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_BACKEND_URL;
 
   return (
     <div>
@@ -21,6 +21,7 @@ const App = () => {
       <div className="app-content">
         <Sidebar />
         <Routes>
+          <Route path="/" element={<Navigate to="/addcatagory" />} />
           <Route path="/addcatagory" element={<Addcatagory url={url} />} />
           <Route path="/listcatagory" element={<Listcatagory url={url} />} />
           <Route path="/add" element={<Add url={url} />} />
